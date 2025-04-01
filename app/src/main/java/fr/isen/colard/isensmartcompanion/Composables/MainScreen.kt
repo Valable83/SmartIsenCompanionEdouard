@@ -2,6 +2,8 @@ package fr.isen.colard.isensmartcompanion.Composables
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.*
@@ -13,55 +15,92 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import fr.isen.colard.isensmartcompanion.api.Gemini
+import kotlinx.coroutines.launch
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     var question by remember { mutableStateOf("") }
-    val context = LocalContext.current
+    var responses by remember { mutableStateOf(listOf<String>()) }
+    var isLoading by remember { mutableStateOf(false) }
 
-    Box(
-        modifier = modifier.fillMaxSize()
-    ) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    Box(modifier = modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
-            Text(
-                text = "ISEN",
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Red
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Smart Companion",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Gray
+            // Titre
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text("ISEN", fontSize = 36.sp, fontWeight = FontWeight.Bold, color = Color.Red)
+                Text("Smart Companion", fontSize = 20.sp, fontWeight = FontWeight.Medium, color = Color.Gray)
+            }
+
+            // Liste des réponses IA
+            LazyColumn(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp)
+            ) {
+                items(responses) { response ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFF3F3F3))
+                    ) {
+                        Text(
+                            text = response,
+                            modifier = Modifier.padding(12.dp),
+                            color = Color.Black
+                        )
+                    }
+                }
+            }
+
+            // Barre de chargement
+            if (isLoading) {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
+            // Champ de texte + bouton d'envoi
+            OutlinedTextField(
+                value = question,
+                onValueChange = { question = it },
+                placeholder = { Text("Posez votre question") },
+                trailingIcon = {
+                    IconButton(onClick = {
+                        if (question.isNotBlank()) {
+                            scope.launch {
+                                isLoading = true
+                                val response = Gemini.getGeminiResponse(question)
+                                if (response != null) {
+                                    responses = responses + "Q : $question\nA : $response"
+                                    question = ""
+                                } else {
+                                    Toast.makeText(context, "Erreur IA", Toast.LENGTH_SHORT).show()
+                                }
+                                isLoading = false
+                            }
+                        } else {
+                            Toast.makeText(context, "Veuillez écrire une question", Toast.LENGTH_SHORT).show()
+                        }
+                    }) {
+                        Icon(Icons.Default.ArrowForward, contentDescription = "Envoyer", tint = Color.Red)
+                    }
+                },
+                modifier = Modifier.fillMaxWidth()
             )
         }
-
-        OutlinedTextField(
-            value = question,
-            onValueChange = { question = it },
-            placeholder = { Text("Posez votre question") },
-            trailingIcon = {
-                IconButton(onClick = {
-                    Toast.makeText(context, "Question envoyée", Toast.LENGTH_SHORT).show()
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowForward,
-                        contentDescription = "Envoyer",
-                        tint = Color.Red
-                    )
-                }
-            },
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(16.dp)
-        )
     }
 }

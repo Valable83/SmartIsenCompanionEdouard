@@ -16,8 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import fr.isen.colard.isensmartcompanion.API.RetrofitInstance
-import fr.isen.colard.isensmartcompanion.Composables.EventDetailActivity
+import fr.isen.colard.isensmartcompanion.api.RetrofitInstance
 import kotlinx.parcelize.Parcelize
 import retrofit2.Call
 import retrofit2.Callback

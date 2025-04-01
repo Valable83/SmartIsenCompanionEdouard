@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.API
+package fr.isen.colard.isensmartcompanion.api
 
 import fr.isen.colard.isensmartcompanion.Composables.Event
 import retrofit2.Call
