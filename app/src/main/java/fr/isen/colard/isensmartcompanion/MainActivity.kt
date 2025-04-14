@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import fr.isen.colard.isensmartcompanion.Composables.BottomNavigationBar
 import fr.isen.colard.isensmartcompanion.Composables.EventsScreen
 import fr.isen.colard.isensmartcompanion.Composables.MainScreen
+import fr.isen.colard.isensmartcompanion.Composables.HistoryScreen
 import fr.isen.colard.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -40,8 +41,7 @@ fun MainApp() {
             when (currentScreen) {
                 "home" -> MainScreen()
                 "events" -> EventsScreen()
-                // "agenda" -> ... à venir
-                // "history" -> ... à venir
+                "history" -> HistoryScreen()  // Ajout de l'écran Historique ici
             }
         }
     }

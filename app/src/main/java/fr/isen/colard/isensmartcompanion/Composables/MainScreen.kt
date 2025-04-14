@@ -16,6 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fr.isen.colard.isensmartcompanion.api.Gemini
+import fr.isen.colard.isensmartcompanion.data.AppDatabase
+import fr.isen.colard.isensmartcompanion.data.Interaction
 import kotlinx.coroutines.launch
 
 @Composable
@@ -25,6 +27,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
     var isLoading by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
+    val db = remember { AppDatabase.getDatabase(context) }
     val scope = rememberCoroutineScope()
 
     Box(modifier = modifier.fillMaxSize()) {
@@ -33,7 +36,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            // Titre
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -44,7 +46,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 Text("Smart Companion", fontSize = 20.sp, fontWeight = FontWeight.Medium, color = Color.Gray)
             }
 
-            // Liste des réponses IA
             LazyColumn(
                 modifier = Modifier
                     .weight(1f)
@@ -67,13 +68,11 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            // Barre de chargement
             if (isLoading) {
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            // Champ de texte + bouton d'envoi
             OutlinedTextField(
                 value = question,
                 onValueChange = { question = it },
@@ -86,6 +85,15 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                 val response = Gemini.getGeminiResponse(question)
                                 if (response != null) {
                                     responses = responses + "Q : $question\nA : $response"
+
+                                    val timestamp = System.currentTimeMillis()
+                                    val interaction = Interaction(
+                                        question = question,
+                                        response = response,
+                                        timestamp = timestamp
+                                    )
+                                    db.interactionDao().insertInteraction(interaction)
+
                                     question = ""
                                 } else {
                                     Toast.makeText(context, "Erreur IA", Toast.LENGTH_SHORT).show()
