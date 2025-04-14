@@ -31,20 +31,20 @@ fun BottomNavigationBar(
             onClick = { onScreenSelected("events") }
         )
 
-        // Onglet Agenda (à venir)
+        // Onglet Agenda (✅ Activé)
         NavigationBarItem(
             icon = { Icon(Icons.Filled.CalendarToday, contentDescription = "Agenda") },
             label = { Text("Agenda") },
-            selected = false,
-            onClick = { Toast.makeText(context, "À venir", Toast.LENGTH_SHORT).show() }
+            selected = currentScreen == "agenda",
+            onClick = { onScreenSelected("agenda") }
         )
 
         // Onglet Historique
         NavigationBarItem(
             icon = { Icon(Icons.Filled.History, contentDescription = "Historique") },
             label = { Text("Historique") },
-            selected = currentScreen == "history",  // Sélectionner l'onglet Historique si l'écran actuel est "history"
-            onClick = { onScreenSelected("history") } // Afficher l'écran Historique
+            selected = currentScreen == "history",
+            onClick = { onScreenSelected("history") }
         )
     }
 }
