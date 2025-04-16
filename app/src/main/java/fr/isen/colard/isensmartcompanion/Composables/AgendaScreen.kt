@@ -83,9 +83,10 @@ fun AgendaScreen() {
         ) {
             Text("Agenda de l'étudiant", fontSize = 24.sp, fontWeight = FontWeight.Bold)
             temperature?.let {
-                Text(it, fontSize = 16.sp)
+                Text("$it - Toulon", fontSize = 16.sp)
             }
         }
+
 
         Spacer(modifier = Modifier.height(16.dp))
 
