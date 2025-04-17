@@ -121,6 +121,7 @@ fun mockCourses(): List<Course> {
     return listOf(
         Course(1, "Electronique", "08h30 - 12h00", "A105", "M. Léonard"),
         Course(2, "Fluide", "08h00 - 12h00", "Y255", "Mme. Pignol"),
-        Course(3, "Java", "13h30 - 17h00", "Université Garde", "M. Marre")
+        Course(3, "Java", "13h30 - 17h00", "Université Garde", "M. Marre"),
+        Course(4, "Techno", "06h00 - 20h00", "U306", "Mme. Bernardini")
     )
 }
