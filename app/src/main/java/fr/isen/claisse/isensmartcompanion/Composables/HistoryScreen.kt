@@ -46,7 +46,7 @@ fun HistoryScreen() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Historique IA", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            Text("Historique Conversation du Chat", fontSize = 24.sp, fontWeight = FontWeight.Bold)
 
             if (interactions.isNotEmpty()) {
                 IconButton(onClick = {
