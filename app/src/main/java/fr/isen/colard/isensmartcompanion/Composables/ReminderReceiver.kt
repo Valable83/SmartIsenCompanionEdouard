@@ -20,10 +20,8 @@ class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val title = intent.getStringExtra("event_title") ?: "Événement ISEN"
 
-        // Crée le canal de notification (Android 8+)
         createNotificationChannel(context)
 
-        // Intent vers l'appli quand on clique sur la notif
         val pendingIntent = PendingIntent.getActivity(
             context,
             0,
@@ -31,7 +29,6 @@ class ReminderReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        // Construction de la notification
         val notification = NotificationCompat.Builder(context, "event_reminder_channel")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Rappel d'événement")
@@ -50,9 +47,7 @@ class ReminderReceiver : BroadcastReceiver() {
                 "event_reminder_channel",
                 "Rappels d'événements",
                 NotificationManager.IMPORTANCE_HIGH
-            ).apply {
-                description = "Canal pour les rappels d'événements"
-            }
+            )
             val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }

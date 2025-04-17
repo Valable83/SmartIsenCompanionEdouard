@@ -85,15 +85,12 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                 val response = Gemini.getGeminiResponse(question)
                                 if (response != null) {
                                     responses = responses + "Q : $question\nA : $response"
-
-                                    val timestamp = System.currentTimeMillis()
                                     val interaction = Interaction(
                                         question = question,
                                         response = response,
-                                        timestamp = timestamp
+                                        timestamp = System.currentTimeMillis()
                                     )
                                     db.interactionDao().insertInteraction(interaction)
-
                                     question = ""
                                 } else {
                                     Toast.makeText(context, "Erreur IA", Toast.LENGTH_SHORT).show()

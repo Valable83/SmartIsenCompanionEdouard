@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Interaction::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun interactionDao(): InteractionDao
 
     companion object {

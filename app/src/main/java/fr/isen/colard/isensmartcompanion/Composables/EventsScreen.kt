@@ -1,7 +1,7 @@
 package fr.isen.colard.isensmartcompanion.Composables
 
 import android.content.Intent
-import android.util.Log
+import android.os.Parcelable
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,11 +21,10 @@ import kotlinx.parcelize.Parcelize
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.os.Parcelable
 
 @Parcelize
 data class Event(
-    val id: String, // 🔁 Corrigé ici (était Int avant)
+    val id: String,
     val title: String,
     val description: String,
     val date: String,
@@ -39,33 +38,29 @@ fun EventsScreen() {
     var events by remember { mutableStateOf<List<Event>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
 
-    // 🔁 Lancement de la requête Retrofit
     LaunchedEffect(Unit) {
-        Log.d("EventsScreen", "Début de la requête Retrofit")
         RetrofitInstance.api.getEvents().enqueue(object : Callback<List<Event>> {
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
                 if (response.isSuccessful) {
-                    Log.d("EventsScreen", "Réponse reçue : ${response.body()?.size} événements")
                     events = response.body() ?: emptyList()
                 } else {
-                    Log.e("EventsScreen", "Erreur serveur : ${response.code()}")
                     Toast.makeText(context, "Erreur serveur", Toast.LENGTH_SHORT).show()
                 }
                 isLoading = false
             }
 
             override fun onFailure(call: Call<List<Event>>, t: Throwable) {
-                Log.e("EventsScreen", "Erreur réseau : ${t.message}")
                 Toast.makeText(context, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 isLoading = false
             }
         })
     }
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)) {
-
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         Text("Événements", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
 

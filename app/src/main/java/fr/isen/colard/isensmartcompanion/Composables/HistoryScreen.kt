@@ -76,7 +76,7 @@ fun HistoryScreen() {
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text("📅 ${formatTimestamp(interaction.timestamp)}", fontWeight = FontWeight.SemiBold)
+                            Text(formatTimestamp(interaction.timestamp), fontWeight = FontWeight.SemiBold)
                             IconButton(onClick = {
                                 scope.launch {
                                     db.interactionDao().deleteInteraction(interaction)
@@ -87,9 +87,9 @@ fun HistoryScreen() {
                             }
                         }
                         Spacer(modifier = Modifier.height(4.dp))
-                        Text("❓ ${interaction.question}", fontWeight = FontWeight.Bold)
+                        Text(interaction.question, fontWeight = FontWeight.Bold)
                         Spacer(modifier = Modifier.height(2.dp))
-                        Text("💡 ${interaction.response}")
+                        Text(interaction.response)
                     }
                 }
             }

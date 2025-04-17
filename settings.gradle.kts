@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -13,5 +14,6 @@ dependencyResolutionManagement {
         maven { url = uri("https://storage.googleapis.com/download.tensorflow.org/models/maven") }
     }
 }
+
 rootProject.name = "ISENSmartCompanion"
 include(":app")

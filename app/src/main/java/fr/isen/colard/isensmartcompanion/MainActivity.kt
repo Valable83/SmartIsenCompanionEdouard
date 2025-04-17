@@ -9,7 +9,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import fr.isen.colard.isensmartcompanion.Composables.*
-
 import fr.isen.colard.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,7 +38,7 @@ fun MainApp() {
             when (currentScreen) {
                 "home" -> MainScreen()
                 "events" -> EventsScreen()
-                "agenda" -> AgendaScreen() // ✅ Ajout de l'écran Agenda
+                "agenda" -> AgendaScreen()
                 "history" -> HistoryScreen()
             }
         }

@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface InteractionDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertInteraction(interaction: Interaction)
 
