@@ -26,11 +26,9 @@ fun AgendaScreen() {
     val prefs = context.getSharedPreferences("event_prefs", Context.MODE_PRIVATE)
     var favoriteEvents by remember { mutableStateOf(listOf<Event>()) }
     val studentCourses = remember { mockCourses() }
-
     var temperature by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
-    // 🌤️ Appel météo pour Toulon (latitude / longitude)
     LaunchedEffect(Unit) {
         scope.launch {
             RetrofitInstance.openMeteoApi.getCurrentWeather(
@@ -43,18 +41,14 @@ fun AgendaScreen() {
                 ) {
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            temperature = it.current?.temperature_2m?.toInt()?.toString()?.plus("°C")
+                            temperature = it.current.temperature_2m.toInt().toString() + "°C"
                         }
                     }
                 }
-
-                override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                    // Optionnel : gérer l'erreur
-                }
+                override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {}
             })
         }
 
-        // 🔁 Récupération des événements favoris
         RetrofitInstance.api.getEvents().enqueue(object : Callback<List<Event>> {
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
                 if (response.isSuccessful) {
@@ -63,7 +57,6 @@ fun AgendaScreen() {
                     } ?: emptyList()
                 }
             }
-
             override fun onFailure(call: Call<List<Event>>, t: Throwable) {
                 favoriteEvents = emptyList()
             }
@@ -75,7 +68,6 @@ fun AgendaScreen() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // 🔥 En-tête : Titre + température
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -86,7 +78,6 @@ fun AgendaScreen() {
                 Text("$it - Toulon", fontSize = 16.sp)
             }
         }
-
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -137,7 +128,6 @@ fun AgendaScreen() {
     }
 }
 
-// ✅ Modèle de cours
 data class Course(
     val id: Int,
     val title: String,

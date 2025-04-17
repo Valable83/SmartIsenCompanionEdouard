@@ -50,7 +50,6 @@ class EventDetailActivity : ComponentActivity() {
             return
         }
 
-        // Demande la permission de POST_NOTIFICATIONS si nécessaire (Android 13+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -97,10 +96,8 @@ fun EventDetailScreen(event: Event) {
                 ).show()
 
                 if (isSubscribed) {
-                    val alarmManager =
-                        context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-                    // Android 12+ : vérifier si l’app peut programmer des alarmes exactes
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
                         !alarmManager.canScheduleExactAlarms()
                     ) {
@@ -120,7 +117,7 @@ fun EventDetailScreen(event: Event) {
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
 
-                    val triggerAt = System.currentTimeMillis() + 10_000 // 10 sec plus tard
+                    val triggerAt = System.currentTimeMillis() + 10_000
 
                     alarmManager.setExact(
                         AlarmManager.RTC_WAKEUP,

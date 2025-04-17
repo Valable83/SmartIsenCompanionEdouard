@@ -7,29 +7,23 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-// ✅ API événements (Firebase)
 interface EventApiService {
     @GET("events.json")
     fun getEvents(): Call<List<Event>>
 }
 
-// ✅ API météo (Open-Meteo)
 interface OpenMeteoApi {
     @GET("v1/forecast")
     fun getCurrentWeather(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("current") current: String = "temperature_2m"
-    ): Call<WeatherResponse> // ✅ utilise le bon modèle
+    ): Call<WeatherResponse>
 }
 
-// ✅ Singleton pour Retrofit
 object RetrofitInstance {
-    private const val BASE_EVENTS_URL =
-        "https://isen-smart-companion-default-rtdb.europe-west1.firebasedatabase.app/"
-
-    private const val BASE_OPEN_METEO_URL =
-        "https://api.open-meteo.com/"
+    private const val BASE_EVENTS_URL = "https://isen-smart-companion-default-rtdb.europe-west1.firebasedatabase.app/"
+    private const val BASE_OPEN_METEO_URL = "https://api.open-meteo.com/"
 
     val api: EventApiService by lazy {
         Retrofit.Builder()

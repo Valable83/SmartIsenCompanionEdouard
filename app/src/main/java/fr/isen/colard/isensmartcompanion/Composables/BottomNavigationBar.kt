@@ -15,31 +15,24 @@ fun BottomNavigationBar(
     val context = LocalContext.current
 
     NavigationBar {
-        // Onglet Accueil
         NavigationBarItem(
             icon = { Icon(Icons.Filled.Home, contentDescription = "Accueil") },
             label = { Text("Accueil") },
             selected = currentScreen == "home",
             onClick = { onScreenSelected("home") }
         )
-
-        // Onglet Événements
         NavigationBarItem(
             icon = { Icon(Icons.Filled.Event, contentDescription = "Événements") },
             label = { Text("Événements") },
             selected = currentScreen == "events",
             onClick = { onScreenSelected("events") }
         )
-
-        // Onglet Agenda (✅ Activé)
         NavigationBarItem(
             icon = { Icon(Icons.Filled.CalendarToday, contentDescription = "Agenda") },
             label = { Text("Agenda") },
             selected = currentScreen == "agenda",
             onClick = { onScreenSelected("agenda") }
         )
-
-        // Onglet Historique
         NavigationBarItem(
             icon = { Icon(Icons.Filled.History, contentDescription = "Historique") },
             label = { Text("Historique") },
