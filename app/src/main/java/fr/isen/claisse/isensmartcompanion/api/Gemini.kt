@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.api
+package fr.isen.claisse.isensmartcompanion.api
 
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content

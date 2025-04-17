@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion
+package fr.isen.claisse.isensmartcompanion
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

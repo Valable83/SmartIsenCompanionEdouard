@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.Composables
+package fr.isen.claisse.isensmartcompanion.Composables
 
 import android.Manifest
 import android.app.AlarmManager
@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
-import fr.isen.colard.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
+import fr.isen.claisse.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 
 class EventDetailActivity : ComponentActivity() {
 

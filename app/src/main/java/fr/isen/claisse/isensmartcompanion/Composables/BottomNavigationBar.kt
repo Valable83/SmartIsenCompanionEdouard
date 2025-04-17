@@ -1,6 +1,5 @@
-package fr.isen.colard.isensmartcompanion.Composables
+package fr.isen.claisse.isensmartcompanion.Composables
 
-import android.widget.Toast
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*

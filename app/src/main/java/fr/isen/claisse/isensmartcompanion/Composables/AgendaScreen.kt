@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.Composables
+package fr.isen.claisse.isensmartcompanion.Composables
 
 import android.content.Context
 import androidx.compose.foundation.layout.*
@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import fr.isen.colard.isensmartcompanion.api.RetrofitInstance
-import fr.isen.colard.isensmartcompanion.api.WeatherResponse
+import fr.isen.claisse.isensmartcompanion.api.RetrofitInstance
+import fr.isen.claisse.isensmartcompanion.api.WeatherResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

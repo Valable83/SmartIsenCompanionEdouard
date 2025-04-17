@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.data
+package fr.isen.claisse.isensmartcompanion.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

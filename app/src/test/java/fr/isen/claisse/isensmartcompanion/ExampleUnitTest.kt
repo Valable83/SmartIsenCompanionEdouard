@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion
+package fr.isen.claisse.isensmartcompanion
 
 import org.junit.Test
 

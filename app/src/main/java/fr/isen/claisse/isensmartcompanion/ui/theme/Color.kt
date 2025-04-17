@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.ui.theme
+package fr.isen.claisse.isensmartcompanion.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

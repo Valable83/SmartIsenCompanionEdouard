@@ -1,6 +1,6 @@
-package fr.isen.colard.isensmartcompanion.api
+package fr.isen.claisse.isensmartcompanion.api
 
-import fr.isen.colard.isensmartcompanion.Composables.Event
+import fr.isen.claisse.isensmartcompanion.Composables.Event
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

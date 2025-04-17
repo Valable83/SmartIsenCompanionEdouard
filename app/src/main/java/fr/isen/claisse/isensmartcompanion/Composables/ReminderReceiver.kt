@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.Composables
+package fr.isen.claisse.isensmartcompanion.Composables
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -11,8 +11,8 @@ import android.os.Build
 import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import fr.isen.colard.isensmartcompanion.MainActivity
-import fr.isen.colard.isensmartcompanion.R
+import fr.isen.claisse.isensmartcompanion.MainActivity
+import fr.isen.claisse.isensmartcompanion.R
 
 class ReminderReceiver : BroadcastReceiver() {
 

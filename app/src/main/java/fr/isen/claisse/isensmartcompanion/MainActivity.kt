@@ -1,4 +1,6 @@
-package fr.isen.colard.isensmartcompanion
+package fr.isen.claisse.isensmartcompanion
+
+// Import de toute les biblothèque
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,9 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import fr.isen.colard.isensmartcompanion.Composables.*
-import fr.isen.colard.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
+import fr.isen.claisse.isensmartcompanion.Composables.*
+import fr.isen.claisse.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 
+// CLASS MAIN
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +24,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+ // MAIN APP AVEC TOUT LES ELEMENTS
 @Composable
 fun MainApp() {
     var currentScreen by remember { mutableStateOf("home") }

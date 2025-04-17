@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.Composables
+package fr.isen.claisse.isensmartcompanion.Composables
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -15,9 +15,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import fr.isen.colard.isensmartcompanion.api.Gemini
-import fr.isen.colard.isensmartcompanion.data.AppDatabase
-import fr.isen.colard.isensmartcompanion.data.Interaction
+import fr.isen.claisse.isensmartcompanion.api.Gemini
+import fr.isen.claisse.isensmartcompanion.data.AppDatabase
+import fr.isen.claisse.isensmartcompanion.data.Interaction
 import kotlinx.coroutines.launch
 
 @Composable

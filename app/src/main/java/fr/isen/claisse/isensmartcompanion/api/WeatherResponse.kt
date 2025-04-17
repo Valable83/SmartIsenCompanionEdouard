@@ -1,4 +1,4 @@
-package fr.isen.colard.isensmartcompanion.api
+package fr.isen.claisse.isensmartcompanion.api
 
 data class WeatherResponse(
     val current: CurrentWeather
