@@ -42,7 +42,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     .padding(vertical = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text("ISEN", fontSize = 36.sp, fontWeight = FontWeight.Bold, color = Color.Red)
+                Text("ISENN", fontSize = 36.sp, fontWeight = FontWeight.Bold, color = Color.Red)
                 Text("Smart Companion", fontSize = 20.sp, fontWeight = FontWeight.Medium, color = Color.Gray)
             }
 

@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fr.isen.claisse.isensmartcompanion.api.RetrofitInstance
-import fr.isen.claisse.isensmartcompanion.api.WeatherResponse
+
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,24 +30,7 @@ fun AgendaScreen() {
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
-        scope.launch {
-            RetrofitInstance.openMeteoApi.getCurrentWeather(
-                latitude = 43.1242,
-                longitude = 5.928
-            ).enqueue(object : Callback<WeatherResponse> {
-                override fun onResponse(
-                    call: Call<WeatherResponse>,
-                    response: Response<WeatherResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        response.body()?.let {
-                            temperature = it.current.temperature_2m.toInt().toString() + "°C"
-                        }
-                    }
-                }
-                override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {}
-            })
-        }
+
 
         RetrofitInstance.api.getEvents().enqueue(object : Callback<List<Event>> {
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
