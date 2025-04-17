@@ -56,10 +56,8 @@ fun AgendaScreen() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Agenda de l'étudiant", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-            temperature?.let {
-                Text("$it - Toulon", fontSize = 16.sp)
-            }
+            Text("PARTIE AGENDA ", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -75,7 +73,7 @@ fun AgendaScreen() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD))
+                        colors = CardDefaults.cardColors(containerColor = Color(0x00000000))
                     ) {
                         Column(modifier = Modifier.padding(12.dp)) {
                             Text(event.title, fontWeight = FontWeight.Bold)
@@ -89,7 +87,7 @@ fun AgendaScreen() {
             if (studentCourses.isNotEmpty()) {
                 item {
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text("🎓 Cours", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+                    Text("🎓 Cours à venir", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
                 }
                 items(studentCourses) { course ->
@@ -97,12 +95,12 @@ fun AgendaScreen() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F8E9))
+                        colors = CardDefaults.cardColors(containerColor = Color(0x00FFFF))
                     ) {
                         Column(modifier = Modifier.padding(12.dp)) {
                             Text(course.title, fontWeight = FontWeight.Bold)
-                            Text("Prof : ${course.teacher}")
-                            Text("Heure : ${course.time} - Salle : ${course.room}")
+                            Text("Professeur : ${course.teacher}")
+                            Text("Heure : ${course.time} - Situé : ${course.room}")
                         }
                     }
                 }
@@ -121,8 +119,8 @@ data class Course(
 
 fun mockCourses(): List<Course> {
     return listOf(
-        Course(1, "Maths avancées", "08h30 - 10h00", "B203", "M. Dupont"),
-        Course(2, "IoT", "10h15 - 12h00", "C105", "Mme. Bernard"),
-        Course(3, "Systèmes embarqués", "13h30 - 15h00", "D301", "Dr. Martin")
+        Course(1, "Electronique", "08h30 - 12h00", "A105", "M. Léonard"),
+        Course(2, "Fluide", "08h00 - 12h00", "Y255", "Mme. Pignol"),
+        Course(3, "Java", "13h30 - 17h00", "Université Garde", "M. Marre")
     )
 }
